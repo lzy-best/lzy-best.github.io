@@ -1,0 +1,56 @@
+{inc:header.htm}
+<style type="text/css">
+.tb2 .li .col{border-bottom:1px solid #D0E6EC}
+.tb2 .li i{margin-right:15px;color:#077AC7}
+</style>
+<div class="m">
+
+	<div class="p">
+		<div class="cc">
+			{if:empty($mag_arr)}<div class="sky warning bnote"><i></i><b>暂无留言</b></div>{else}
+			<table class="tb2">
+				<tr class="tit">
+					<th class="th" width="30">序号</th>
+					<th class="th">留言标题</th>
+					<th class="th">客户姓名</th>
+					<th class="th">电话号</th>
+					<th class="th">留言内容</th>
+					<th class="th" width="100">操作</th>
+				</tr>
+
+				{loop:$mag_arr $v $k}
+				<tr class="li" key="{$k}">
+					<td class="col">{$k}</td>
+					<td class="col">{$v[title]}</td>
+					<td class="col">{$v[name]}</td>
+					<td class="col">{$v[tel]}</td>
+					
+					<td class="col">{$v[content]}</td>
+					<td class="col"> <a class="but3 del" onclick="mag_del(this)" href="javascript:;">删除</a></td>
+				</tr>
+				{/loop}
+			</table>
+			
+			{/if}
+		</div>
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+//删除留言
+function mag_del(obj) {
+	var o = $(obj).parent().parent();
+	var name = o.find(".title").val();
+	var key = o.attr("key");
+	twAjax.confirm("删除不可恢复，确定删除？", function(){
+		twAjax.postd("index.php?u=mag-del-ajax-1", {"key":key}, function(data){
+			twAjax.alert(data);
+			if(window.twData.err==0) o.remove();
+		});
+	});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>企业留言</title>
+	<link rel="stylesheet" type="text/css" href="{$tw[tpl]}css/bootstrap.min.css" />
+  <script src="{$tw[tpl]}js/bootstrap.min.js"></script>
+   <script src="{$tw[tpl]}js/jquery.min.js"></script>
+  
+</head>
+<body>
+	<div class="container" style="padding:50px">
+		
+		<div class="row">
+			<div classs="col-md-12">
+
+				<form role="form" action="{$tw[webdir]}index.php?u=mag-post-ajax-1" method="post" target="id_iframe" name="mag_form">
+					<div class="form-group">
+    <label for="exampleInputEmail1">留言标题</label>
+    <input type="text" class="form-control" id="mag_title" placeholder="请输入你留言的标题" name="title">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">联系人</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入你的联系人姓名(必填)" name="name" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">联系方式</label>
+    <input type="tel" class="form-control" id="exampleInputTel" placeholder="请输入联系方式(必填)" name="tel" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">留言内容</label>
+    <textarea class="form-control" rows="3" id="exampleInputPassword1" placeholder="请输入留言内容(必填)" name="content" required></textarea>
+
+  </div>
+
+  <input type="reset" value="重新填写" class="btn btn-default pull-right" style="margin-left:20px;">
+    <input type="submit" id="mag_submit" value="提交留言" class="btn btn-default pull-right" onclick="jy();">
+</form>
+  <iframe id="id_iframe" name="id_iframe" style="display:none;"></iframe>
+  <script type="text/javascript">
+            function jy(){
+              var title=document.mag_form.name;
+              var tel=document.mag_form.tel;
+              var content=document.mag_form.content;
+                if(title.value =='' || tel.value =='' ||content.value ==''){
+                  alert('对不起，必填项中有没有填写的');
+               }else{
+                alert('留言成功，我们的客服会尽快回复您');
+                document.mag_form.submit();
+                }
+            }
+  </script>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
